@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   namespace :api do
     namespace :v1 do
-      #resources :items, only: [:index, :create, :destroy, :update]
+      resources :users, only: [:show, :create]
     end
   end
 end
