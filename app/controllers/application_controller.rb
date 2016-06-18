@@ -1,12 +1,15 @@
 class ApplicationController < ActionController::Base
   before_action :allow_cross_origin_requests, if: proc { Rails.env.development? }
+  skip_before_filter  :verify_authenticity_token
+  include Authenticable
+
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
 
   def preflight
     render nothing: true
   end
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :null_session
 
   private
   def allow_cross_origin_requests

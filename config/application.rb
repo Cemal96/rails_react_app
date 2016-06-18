@@ -22,8 +22,13 @@ module RailsReactApp
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    config.to_prepare do
-      DeviseController.respond_to :html, :json
+    config.middleware.use Rack::Cors do
+      allow do
+        origins 'http://localhost:8080'
+        resource %r{/users/\d+},
+          :headers => ['Origin', 'Accept', 'Content-Type'],
+          :methods => [:delete]
+      end
     end 
   end
 end
