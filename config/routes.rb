@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   #delete 'users' => 'users#destroy'
   match '/sessions', to: 'sessions#destroy', via: [:delete]
   scope :auth do
-	  match 'is_admin', to: "auth#is_admin?", via: [:get, :options] 
-	  match 'is_signed_in', to: "auth#is_signed_in?", via: [:get, :options] 
-	end
+    match 'is_admin', to: "auth#is_admin?", via: [:get, :options] 
+    match 'is_signed_in', to: "auth#is_signed_in?", via: [:get, :options] 
+  end
 end

@@ -8,7 +8,7 @@ class AuthController < ApplicationController
   end
   ## I think this function not need, but i keep it
   def is_admin?
-  	if user_admin?
+    if user_admin?
       render :json => {"admin" => true, "user" => current_user}
     else
       render :json => {"admin" => false}
