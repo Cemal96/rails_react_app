@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :allow_cross_origin_requests, if: proc { Rails.env.development? }
-  skip_before_filter  :verify_authenticity_token
   include Authenticable
 
   # Prevent CSRF attacks by raising an exception.
@@ -10,7 +9,7 @@ class ApplicationController < ActionController::Base
   def preflight
     render nothing: true
   end
-
+  
   private
   def allow_cross_origin_requests
     headers['Access-Control-Allow-Origin'] = '*'

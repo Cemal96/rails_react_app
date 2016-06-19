@@ -11,4 +11,8 @@ module Authenticable
   def user_signed_in?
     current_user.present?
   end
+
+  def user_admin?
+  	current_user.admin?
+  end
 end
